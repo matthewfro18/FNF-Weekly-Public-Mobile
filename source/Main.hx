@@ -30,7 +30,7 @@ class Main extends Sprite
 	public static var fpsVar:FPSCounter;
 	public static var compilationInformation:TextField;
 	
-	public static var scaleMode:FunkinRatioScaleMode;
+	public static var scaleMode:MobileScaleMode;
 
 	// You can pretty much ignore everything from here on - your code should go in your states.
 
@@ -129,7 +129,7 @@ class Main extends Sprite
 
 		FlxG.signals.gameResized.add(onResize);
 		FlxG.signals.preStateSwitch.add(onStateSwitch);
-		FlxG.scaleMode = scaleMode = new FunkinRatioScaleMode();
+		FlxG.scaleMode = scaleMode = new MobileScaleMode();
 
 
 
