@@ -48,7 +48,7 @@
 	<define name="LUA_ALLOWED" if="desktop || android" />
 	<!-- <define name="ACHIEVEMENTS_ALLOWED" /> FUCK YOUUUU-->
 	<define name="VIDEOS_ALLOWED" if="cpp" />
-	<define name="DISCORD_ALLOWED" if="cpp"/>
+	<define name="DISCORD_ALLOWED" if="desktop"/>
 
 	<!-- OOPPSSS HAHA -->
 	<!-- define name="HIT_SINGLE"/ -->
@@ -100,6 +100,7 @@
 	<haxelib name="flixel-ui" version="2.5.0"/>
 	<haxelib name="flixel-tools" version="1.5.1"/>
 	<haxelib name="flxanimate" version="3.0.4"/>
+	<haxelib name="extension-androidtools" if="android" />
 
 	<haxedev set='webgl' />
 	<haxelib name="hscript" />
