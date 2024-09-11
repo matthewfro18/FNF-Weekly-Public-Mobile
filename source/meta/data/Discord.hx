@@ -1,3 +1,4 @@
+#if desktop
 package meta.data;
 
 import Sys.sleep;
@@ -221,3 +222,4 @@ class DiscordClient
 	}
 	#end
 }
+#end
