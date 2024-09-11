@@ -1,7 +1,5 @@
 package meta.states.editors;
 
-import meta.data.Discord;
-import meta.data.Discord.DiscordClient;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxBasic;
