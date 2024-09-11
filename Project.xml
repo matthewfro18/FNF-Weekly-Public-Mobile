@@ -44,7 +44,7 @@
 	<classpath name="source" />
 	
 	<!-- PSYCH ENGINE CUSTOMIZATION -->
-	<define name="MODS_ALLOWED" if="desktop" />
+	<define name="MODS_ALLOWED" if="desktop || android" />
 	<define name="LUA_ALLOWED" if="desktop || android" />
 	<!-- <define name="ACHIEVEMENTS_ALLOWED" /> FUCK YOUUUU-->
 	<define name="VIDEOS_ALLOWED" if="cpp" />
@@ -87,9 +87,6 @@
 		NOT USING A DIRECT THING TO THE ASSET!!!
 	-->
 
-
-
-	<assets path="assets/fonts" embed='true'/>
 	<!-- _______________________________ Libraries ______________________________ -->
 	<!-- <haxelib name="" version=""/> -->
 	<lime version="8.1.1"/>
