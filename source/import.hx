@@ -37,6 +37,12 @@ import android.os.Build.VERSION_CODES as AndroidVersionCode;
 import android.os.BatteryManager as AndroidBatteryManager;
 #end
 
+#if sys
+import sys.*;
+import sys.io.*;
+#elseif js
+import js.html.*;
+#end
 
 import meta.data.Paths;
 import meta.data.ClientPrefs;
