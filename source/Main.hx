@@ -165,7 +165,12 @@ class Main extends Sprite
 	{
 		final scale:Float = Math.max(1,Math.min(w / FlxG.width, h / FlxG.height));
 		if (fpsVar != null) {
+			#if mobile
+			fpsVar.positionFPS(10, 3, Math.min(w / FlxG.width, h / FlxG.height));
+			#else
 			fpsVar.scaleX = fpsVar.scaleY = scale;
+                        #end
+
 		}
 		// if (compilationInformation!=null) {
 
