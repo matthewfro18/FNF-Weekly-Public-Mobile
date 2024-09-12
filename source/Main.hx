@@ -41,7 +41,14 @@ class Main extends Sprite
 
 	public function new()
 	{
+		#if mobile
+		#if android
+		SUtil.doPermissionsShit();
+		#end
+		Sys.setCwd(SUtil.getStorageDirectory());
+		#end
 		super();
+		mobile.backend.CrashHandler.init();
 
 		if (stage != null)
 		{
