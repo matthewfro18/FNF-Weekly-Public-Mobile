@@ -107,8 +107,8 @@ class Main extends Sprite
 			gameHeight = Math.ceil(stageHeight / zoom);
 		}
 		#else
-		if (game.zoom == -1.0)
-			game.zoom = 1.0;
+		if (zoom == -1.0)
+			zoom = 1.0;
 		#end
 
 		// #if !debug
