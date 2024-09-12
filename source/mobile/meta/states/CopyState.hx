@@ -182,7 +182,7 @@ class CopyState extends MusicBeatState
 		locatedFiles = assets.concat(mods);
 
 		//adds modsList.txt to locatedFiles because the tweaks get mixed up when compiled to mobile (idk why)
-		var tweaklist:String = "modsList.txt"
+		var tweaklist:String = "modsList.txt";
 		if (!locatedFiles.contains(tweaklist))
 		{
 			locatedFiles.push(tweaklist);
