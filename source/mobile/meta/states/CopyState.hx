@@ -181,6 +181,13 @@ class CopyState extends MusicBeatState
 		var mods = locatedFiles.filter(folder -> folder.startsWith('content/'));
 		locatedFiles = assets.concat(mods);
 
+		//adds modsList.txt to locatedFiles because the tweaks get mixed up when compiled to mobile (idk why)
+		var tweaklist:String = "modsList.txt"
+		if (!locatedFiles.contains(tweaklist))
+		{
+			locatedFiles.push(tweaklist);
+		}
+
 		var filesToRemove:Array<String> = [];
 
 		for (file in locatedFiles)
