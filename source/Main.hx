@@ -17,6 +17,8 @@ import openfl.display.StageScaleMode;
 import meta.states.*;
 import meta.data.*;
 import meta.CompilationStuff;
+import mobile.meta.data.MobileScaleMode;
+import mobile.meta.states.CopyState;
 
 class Main extends Sprite
 {
@@ -106,7 +108,7 @@ class Main extends Sprite
 		// #end
 
 		ClientPrefs.loadDefaultKeys();
-		addChild(new FNFGame(gameWidth, gameHeight, initialState, #if(flixel < "5.0.0")zoom,#end framerate, framerate, skipSplash, startFullscreen));
+		addChild(new FNFGame(gamewidth, gameheight, #if (mobile && MODS_ALLOWED) CopyState.checkExistingFiles() ? initialState : CopyState #else initialState #end, #if (flixel < "5.0.0") zoom, #end framerate, framerate, skipSplash, startFullscreen));
 
 		fpsVar = new FPSCounter(10, 3, 0xFFFFFF);
 		addChild(fpsVar);
