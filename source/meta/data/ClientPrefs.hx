@@ -30,10 +30,10 @@ class ClientPrefs {
 	public static var realistic:Bool = false;
 	public static var quarterbits:Bool = false;
 
-	public var wideScreen:Bool = false;
+	public static var wideScreen:Bool = false;
 
 	#if android
-	public var storageType:String = "EXTERNAL_DATA";
+	public static var storageType:String = "EXTERNAL_DATA";
 	#end
 
 	public static var downScroll:Bool = false;
