@@ -137,7 +137,6 @@ class Main extends Sprite
 		#if android FlxG.android.preventDefaultKeys = [BACK]; #end
 
 		FlxG.signals.gameResized.add(onResize);
-		FlxG.signals.preStateSwitch.add(onStateSwitch);
 		FlxG.scaleMode = scaleMode = new MobileScaleMode();
 
 
@@ -145,9 +144,9 @@ class Main extends Sprite
 
 
 	}
-	private static function onStateSwitch() {
-		scaleMode.resetSize();
-	}
+	//private static function onStateSwitch() {
+		//scaleMode.resetSize();
+	//}
 
 
 	static function onResize(w,h) 
