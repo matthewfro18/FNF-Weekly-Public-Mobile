@@ -1,7 +1,7 @@
 package mobile.meta.states;
 
 #if mobile
-import states.TitleState;
+import meta.states.TitleState;
 import lime.utils.Assets as LimeAssets;
 import openfl.utils.Assets as OpenFLAssets;
 import flixel.addons.util.FlxAsyncLoop;
