@@ -33,8 +33,10 @@ class MobileScaleMode extends BaseScaleMode
                 gameSize.x = Math.floor(gameSize.y * ratio);
             }
         }
+	@:privateAccess {
 	    FlxG.width = width;
 	    FlxG.height = height;
+	}
 	}
     public function resetSize() {
 		width = null;
