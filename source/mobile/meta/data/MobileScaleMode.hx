@@ -33,8 +33,8 @@ class MobileScaleMode extends BaseScaleMode
         }
 	}
     public function resetSize() {
-		width = null;
-		height = null;
+		Width = null;
+		Height = null;
     }
 
     override function updateGamePosition():Void
