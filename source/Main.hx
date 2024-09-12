@@ -17,7 +17,6 @@ import openfl.display.StageScaleMode;
 import meta.states.*;
 import meta.data.*;
 import meta.CompilationStuff;
-import mobile.meta.data.MobileScaleMode;
 import mobile.meta.states.CopyState;
 
 class Main extends Sprite
