@@ -5,6 +5,8 @@ import flixel.system.scaleModes.BaseScaleMode;
 
 class MobileScaleMode extends BaseScaleMode
 {
+    @:isVar public var width(get, set):Null<Int> = null;
+    @:isVar public var height(get, set):Null<Int> = null;
     public static var allowWideScreen(default, set):Bool = true;
 
     override function updateGameSize(Width:Int, Height:Int):Void
@@ -31,10 +33,12 @@ class MobileScaleMode extends BaseScaleMode
                 gameSize.x = Math.floor(gameSize.y * ratio);
             }
         }
+	    FlxG.width = width;
+	    FlxG.height = height;
 	}
     public function resetSize() {
-		Width = null;
-		Height = null;
+		width = null;
+		height = null;
     }
 
     override function updateGamePosition():Void
