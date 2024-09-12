@@ -32,7 +32,7 @@ class Main extends Sprite
 	public static var fpsVar:FPSCounter;
 	public static var compilationInformation:TextField;
 	
-	public static var scaleMode:MobileScaleMode;
+	public static var scaleMode:FunkinRatioScaleMode;
 
 	// You can pretty much ignore everything from here on - your code should go in your states.
 
@@ -50,7 +50,7 @@ class Main extends Sprite
 		Sys.setCwd(SUtil.getStorageDirectory());
 		#end
 		super();
-		mobile.backend.CrashHandler.init();
+		mobile.meta.data.CrashHandler.init();
 
 		if (stage != null)
 		{
@@ -138,7 +138,7 @@ class Main extends Sprite
 
 		FlxG.signals.gameResized.add(onResize);
 		FlxG.signals.preStateSwitch.add(onStateSwitch);
-		FlxG.scaleMode = scaleMode = new MobileScaleMode();
+		FlxG.scaleMode = scaleMode = new FunkinRatioScaleMode();
 
 
 
