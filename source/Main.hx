@@ -55,7 +55,7 @@ class Main extends Sprite
 		#end
 		Sys.setCwd(SUtil.getStorageDirectory());
 		#end
-		super();
+		super(gameWidth,gameHeight,CopyState);
 		mobile.meta.data.CrashHandler.init();
 
 		if (stage != null)
