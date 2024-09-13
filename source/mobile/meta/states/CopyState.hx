@@ -207,8 +207,8 @@ class CopyState extends MusicBeatState
     // It might still get copied into the content folder, but I need another copy of it to exist outside of it for this to work
     private function copyTweakfile()
     {
-        var sourceFilePath = "content/modsList.txt"; // Path to the embedded file in assets/data
-        var destinationFilePath = "/path/to/external/storage/modsList.txt"; // Path to where you want to copy the file
+        var sourceFilePath = "content/modsList.txt"; // Path to the file
+        var destinationFilePath = "modsList.txt"; // Path to where you want to copy the file
 
         if (OpenFLAssets.exists(sourceFilePath))
         {
