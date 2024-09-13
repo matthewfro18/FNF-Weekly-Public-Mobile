@@ -1,6 +1,6 @@
 package gameObjects.shader;
 
-import flixel.system.FlxAssets.FlxShader;
+import gameObjects.shader.flixel.system.FlxShader;
 
 // https://www.shadertoy.com/view/MscGzl
 class GlitchShaderA extends FlxShader {
