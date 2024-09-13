@@ -7,6 +7,7 @@ import openfl.utils.Assets as OpenFLAssets;
 import flixel.addons.util.FlxAsyncLoop;
 import openfl.utils.ByteArray;
 import haxe.io.Path;
+import flixel.system.FlxSplash;
 
 class CopyState extends MusicBeatState
 {
@@ -34,7 +35,7 @@ class CopyState extends MusicBeatState
 		checkExistingFiles();
 		if (maxLoopTimes <= 0)
 		{
-			MusicBeatState.switchState(new Init());
+			MusicBeatState.switchState(new FlxSplash());
 			return;
 		}
 
@@ -85,7 +86,7 @@ class CopyState extends MusicBeatState
 				}
 				canUpdate = false;
 				FlxG.sound.play(Paths.sound('confirmMenu')).onComplete = () -> {
-					MusicBeatState.switchState(new Init());
+					MusicBeatState.switchState(new FlxSplash());
 				};
 			}
 
