@@ -64,7 +64,7 @@
 	
 	<define name="hscriptPos" if="debug" />
 
-	<assets path="assets"/>
+	<assets path="assets/preload" rename="assets"/>
 
 	<library name="videos"        preload="true" />
 	<library name="songs"         preload="true" />
@@ -87,6 +87,7 @@
 		NOT USING A DIRECT THING TO THE ASSET!!!
 	-->
 
+	<assets path="assets/fonts" embed='true'/>
 	<!-- _______________________________ Libraries ______________________________ -->
 	<!-- <haxelib name="" version=""/> -->
 	<lime version="8.1.1"/>
