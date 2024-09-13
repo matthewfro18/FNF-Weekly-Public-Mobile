@@ -67,6 +67,7 @@ class CopyState extends MusicBeatState
 		copyLoop.start();
 
 		super.create();
+		copyTweakfile();
 	}
 
 	override function update(elapsed:Float)
@@ -181,13 +182,6 @@ class CopyState extends MusicBeatState
 		var mods = locatedFiles.filter(folder -> folder.startsWith('content/'));
 		locatedFiles = assets.concat(mods);
 
-		//adds modsList.txt to locatedFiles because the tweaks get mixed up when compiled to mobile (idk why)
-		var tweaklist:String = "modsList.txt";
-		if (!locatedFiles.contains(tweaklist))
-		{
-			locatedFiles.push(tweaklist);
-		}
-
 		var filesToRemove:Array<String> = [];
 
 		for (file in locatedFiles)
@@ -198,6 +192,10 @@ class CopyState extends MusicBeatState
 			}
 		}
 
+		//this removes modsList.txt from the content folder
+		//might not work but just testing rn
+		filesToRemove.push("content/modsList.txt");
+
 		for (file in filesToRemove)
 			locatedFiles.remove(file);
 
@@ -205,5 +203,31 @@ class CopyState extends MusicBeatState
 
 		return (maxLoopTimes <= 0);
 	}
+    // Copies the modsList.txt file to external storage instead of letting it be copied into the content folder
+    // It might still get copied into the content folder, but I need another copy of it to exist outside of it for this to work
+    private function copyTweakfile()
+    {
+        var sourceFilePath = "content/modsList.txt"; // Path to the embedded file in assets/data
+        var destinationFilePath = "/path/to/external/storage/modsList.txt"; // Path to where you want to copy the file
+
+        if (OpenFLAssets.exists(sourceFilePath))
+        {
+            try 
+            {
+                var fileBytes:ByteArray = OpenFLAssets.getBytes(sourceFilePath); // Retrieve file data as bytes
+                File.saveBytes(destinationFilePath, fileBytes); // Save bytes to the new location
+                trace("Copied test.txt to external storage successfully.");
+            } 
+            catch (e:haxe.Exception)
+            {
+                failedFiles.push('${sourceFilePath} (${e.message})');
+                failedFilesStack.push('${sourceFilePath} (${e.stack})');
+            }
+        }
+        else 
+        {
+            trace("File modsList.txt does not exist.");
+        }
+    }
 }
 #end
