@@ -1,7 +1,7 @@
 // https://www.youtube.com/watch?v=RFRmlPC8Ujo
 package gameObjects.shader;
 
-import flixel.system.FlxAssets.FlxShader;
+import gameObjects.shader.flixel.system.FlxShader;
 import openfl.display.BitmapData;
 import openfl.display.ShaderInput;
 import openfl.utils.Assets;
