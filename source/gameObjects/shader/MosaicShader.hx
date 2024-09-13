@@ -1,6 +1,6 @@
 package gameObjects.shader;
 
-import flixel.system.FlxAssets.FlxShader;
+import gameObjects.shader.flixel.system.FlxShader;
 
 class MosaicShader extends FlxShader
 {
