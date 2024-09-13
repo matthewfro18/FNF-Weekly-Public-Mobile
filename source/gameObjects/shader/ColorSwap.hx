@@ -1,7 +1,7 @@
 package gameObjects.shader;
 
 import flixel.FlxG;
-import flixel.system.FlxAssets.FlxShader;
+import gameObjects.shader.flixel.system.FlxShader;
 import math.*;
 import modchart.*;
 
