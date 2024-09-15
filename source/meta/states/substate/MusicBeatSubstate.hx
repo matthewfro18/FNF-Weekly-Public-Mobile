@@ -27,6 +27,47 @@ class MusicBeatSubstate extends FlxSubState
 	inline function get_controls():Controls
 		return PlayerSettings.player1.controls;
 
+	#if mobile
+	var _virtualpad:FlxVirtualPad;
+	var trackedinputsUI:Array<FlxActionInput> = [];
+	var trackedinputsNOTES:Array<FlxActionInput> = [];
+	#end
+
+	#if mobile
+	public function addVirtualPad(?DPad:FlxDPadMode, ?Action:FlxActionMode) {
+		_virtualpad = new FlxVirtualPad(DPad, Action);
+		add(_virtualpad);
+		controls.setVirtualPadUI(_virtualpad, DPad, Action);
+		trackedinputsUI = controls.trackedinputsUI;
+		controls.trackedinputsUI = [];
+	}
+	#end
+
+    #if mobile
+    public function addVirtualPadCamera() {
+		var virtualpadcam = new flixel.FlxCamera();
+		virtualpadcam.bgColor.alpha = 0;
+		FlxG.cameras.add(virtualpadcam, false);
+		_virtualpad.cameras = [virtualpadcam];
+    }
+    #end
+
+    #if mobile
+	public function removeVirtualPad() {
+		controls.removeFlxInput(trackedinputsUI);
+		remove(_virtualpad);
+	}
+	#end
+
+	override function destroy() {
+		#if mobile
+		controls.removeFlxInput(trackedinputsUI);
+		controls.removeFlxInput(trackedinputsNOTES);
+		#end
+
+		super.destroy();
+	}
+
 	override function update(elapsed:Float)
 	{
 		//everyStep();
