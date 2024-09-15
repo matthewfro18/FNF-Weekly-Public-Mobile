@@ -22,6 +22,7 @@ import gameObjects.shader.Shaders.ChromaticAberrationEffect;
 import gameObjects.shader.Shaders.VCRDistortionEffect;
 import openfl.filters.ShaderFilter;
 import openfl.Lib;
+import flixel.input.actions.FlxActionInput;
 
 import meta.data.scripts.*;
 import meta.data.scripts.Globals;
@@ -45,6 +46,39 @@ class MusicBeatState extends FlxUIState
 
 	inline function get_controls():Controls
 		return PlayerSettings.player1.controls;
+	#if mobile
+	var _virtualpad:FlxVirtualPad;
+	//var _hitbox:FlxHitbox;
+	var trackedinputsUI:Array<FlxActionInput> = [];
+	var trackedinputsNOTES:Array<FlxActionInput> = [];
+	#end
+
+	#if mobile
+	public function addVirtualPad(?DPad:FlxDPadMode, ?Action:FlxActionMode) {
+        _virtualpad = new FlxVirtualPad(DPad, Action, 0.75, ClientPrefs.globalAntialiasing);
+		add(_virtualpad);
+		controls.setVirtualPadUI(_virtualpad, DPad, Action);
+		trackedinputsUI = controls.trackedinputsUI;
+		controls.trackedinputsUI = [];
+	}
+	#end
+
+    #if mobile
+    public function addVirtualPadCamera() {
+		var virtualpadcam = new flixel.FlxCamera();
+		virtualpadcam.bgColor.alpha = 0;
+		FlxG.cameras.add(virtualpadcam, false);
+		_virtualpad.cameras = [virtualpadcam];
+    }
+    #end
+
+	#if mobile
+	public function removeVirtualPad() {
+		controls.removeFlxInput(trackedinputsUI);
+		remove(_virtualpad);
+	}
+	#end
+
 
 	override function create() {
 		camBeat = FlxG.camera;
