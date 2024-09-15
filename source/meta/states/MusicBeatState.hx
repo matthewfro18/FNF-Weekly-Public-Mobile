@@ -79,6 +79,14 @@ class MusicBeatState extends FlxUIState
 	}
 	#end
 
+	override function destroy() {
+		#if mobile
+		controls.removeFlxInput(trackedinputsUI);
+		controls.removeFlxInput(trackedinputsNOTES);
+		#end
+
+		super.destroy();
+	}
 
 	override function create() {
 		camBeat = FlxG.camera;
@@ -96,7 +104,7 @@ class MusicBeatState extends FlxUIState
 		super.create();
 	}
 
-	#if (VIDEOS_ALLOWED && windows)
+	#if (VIDEOS_ALLOWED)
 	override public function onFocus():Void
 	{
 		super.onFocus();
