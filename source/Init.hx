@@ -47,12 +47,6 @@ class Init extends FlxState
 		Highscore.load();
 
 
-		#if (hxvlc < "1.4.1")
-		hxvlc.libvlc.Handle.init();
-        #else
-		hxvlc.util.Handle.init();
-		#end
-
 		if(FlxG.save.data != null && FlxG.save.data.fullscreen) FlxG.fullscreen = FlxG.save.data.fullscreen;
 		if (FlxG.save.data.weekCompleted != null) meta.states.StoryMenuState.weekCompleted = FlxG.save.data.weekCompleted;
 
