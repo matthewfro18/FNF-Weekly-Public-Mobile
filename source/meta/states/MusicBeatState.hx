@@ -22,7 +22,6 @@ import gameObjects.shader.Shaders.ChromaticAberrationEffect;
 import gameObjects.shader.Shaders.VCRDistortionEffect;
 import openfl.filters.ShaderFilter;
 import openfl.Lib;
-import flixel.input.actions.FlxActionInput;
 
 import meta.data.scripts.*;
 import meta.data.scripts.Globals;
