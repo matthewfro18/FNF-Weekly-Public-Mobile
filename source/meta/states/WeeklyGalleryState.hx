@@ -153,7 +153,7 @@ class WeeklyGalleryState extends MusicBeatState
         super.update(elapsed);
 
         //onUpdate
-        var mouse = FlxG.mouse.getScreenPosition(cameras);
+        var mouse = FlxG.mouse.getScreenPosition(FlxG.camera);
         if (FlxG.mouse.justPressed) {
             scrollY = buttons.y - mouse.y;
         } else if (FlxG.mouse.pressed) {
