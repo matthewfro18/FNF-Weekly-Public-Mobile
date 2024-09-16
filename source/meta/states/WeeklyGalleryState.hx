@@ -30,6 +30,8 @@ class WeeklyGalleryState extends MusicBeatState
     var curWeek:Int = 0;
     var curImg:Int = 0;
 
+    var scrollY:Float = 0;
+
     override function create()
     {
         var white = new FlxSprite(0,0).makeGraphic(FlxG.width, FlxG.height, FlxColor.WHITE);
@@ -149,6 +151,14 @@ class WeeklyGalleryState extends MusicBeatState
 
     override function update(elapsed:Float){
         super.update(elapsed);
+
+        //onUpdate
+        var mouse = FlxG.mouse.screenPosition(cameras);
+        if (FlxG.mouse.justPressed) {
+            scrollY = obj.y - mouse.y;
+        } else if (FlxG.mouse.pressed) {
+            obj.y = scrollY + mouse.y;
+        }
 
         if(FlxG.mouse.wheel != 0){
             if(FlxG.mouse.wheel == -1){ // if the shit is goin up
