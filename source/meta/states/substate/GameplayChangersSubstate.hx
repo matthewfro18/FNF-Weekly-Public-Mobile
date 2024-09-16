@@ -177,9 +177,6 @@ class GameplayChangersSubstate extends MusicBeatSubstate
 		}
 
 		if (controls.BACK #if mobile || _virtualpad.buttonB.justPressed #end) {
-		        #if mobile
-		        removeVirtualPad();
-                        #end
 			#if mobile
 			closeSs();
 			#else
