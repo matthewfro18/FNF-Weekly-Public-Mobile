@@ -13,6 +13,7 @@ import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
+import gameObjects.PsychVideoSprite;
 
 import meta.states.*;
 import meta.data.*;
@@ -38,7 +39,7 @@ class FlxSplash extends MusicBeatState
 	var _cachedTimestep:Bool;
 	var _cachedAutoPause:Bool;
 
-	var video:FlxVideo;
+	var video:PsychVideoSprite;
 
 	override public function create():Void
 	{
@@ -57,9 +58,9 @@ class FlxSplash extends MusicBeatState
 		#end
 
 		new FlxTimer().start(1, function(tmr:FlxTimer){
-			video = new FlxVideo();
-			video.onEndReached.add(onComplete,true);
+			video = new PsychVideoSprite();
 			video.load(Paths.video('intro'));
+			video.addCallback(VidCallbacks.ONEND,onComplete);
 			video.play();
 		});
 
@@ -99,7 +100,15 @@ class FlxSplash extends MusicBeatState
 	}
 
 	override function update(elapsed:Float) {
-		if (FlxG.keys.justPressed.SPACE || FlxG.keys.justPressed.ENTER) {
+                var justTouched:Bool = false;
+
+		#if mobile
+                for (touch in FlxG.touches.list)
+	                if (touch.justPressed)
+		                justTouched = true;
+		#end
+
+		if (FlxG.keys.justPressed.SPACE || FlxG.keys.justPressed.ENTER || justTouched) {
 			if (video != null) {
 				video.stop();
 				onComplete();
@@ -224,7 +233,9 @@ class FlxSplash extends MusicBeatState
 		#end
 		// FlxG.stage.removeChild(_sprite);
 		// FlxG.stage.removeChild(_text);
-		video.dispose();
+                if (video != null) {
+		video.destroy();
+		}
 		FlxG.switchState(Type.createInstance(nextState, []));
 		FlxG.game._gameJustStarted = true;
 	}
