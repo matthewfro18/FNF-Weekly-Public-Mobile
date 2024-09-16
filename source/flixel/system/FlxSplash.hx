@@ -56,12 +56,6 @@ class FlxSplash extends MusicBeatState
 		FlxG.keys.enabled = true;
 		#end
 
-		#if (hxvlc < "1.4.1")
-		hxvlc.libvlc.Handle.init();
-        #else
-		hxvlc.util.Handle.init();
-		#end
-
 		new FlxTimer().start(1, function(tmr:FlxTimer){
 			video = new FlxVideo();
 			video.onEndReached.add(onComplete,true);
