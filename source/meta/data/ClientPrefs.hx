@@ -31,11 +31,11 @@ class ClientPrefs {
 	public static var quarterbits:Bool = false;
 	
         //android stuff
-	public var screensaver:Bool = false;
-	public var wideScreen:Bool = false;
-	public var dynamicColors:Bool = true;
-	public var controlsAlpha:Float = 0.7;
-	public var hideHitboxHints:Bool = false;
+	public static var screensaver:Bool = false;
+	public static var wideScreen:Bool = false;
+	public static var dynamicColors:Bool = true;
+	public static var controlsAlpha:Float = 0.7;
+	public static var hideHitboxHints:Bool = false;
 
 	#if android
 	public static var storageType:String = "EXTERNAL_DATA";
