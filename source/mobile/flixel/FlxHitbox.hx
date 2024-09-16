@@ -104,9 +104,9 @@ class FlxHitbox extends FlxSpriteGroup {
 	}
 	function createHintGraphic(Width:Int, Height:Int):BitmapData
 	{
-		var guh = ClientPrefs.data.controlsAlpha;
+		var guh = ClientPrefs.controlsAlpha;
 		if (guh >= 0.9)
-			guh = ClientPrefs.data.controlsAlpha - 0.07;
+			guh = ClientPrefs.controlsAlpha - 0.07;
 		var shape:Shape = new Shape();
 		shape.graphics.beginFill(0xFFFFFF);
 		shape.graphics.lineStyle(3, 0xFFFFFF, 1);
