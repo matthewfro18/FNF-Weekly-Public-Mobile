@@ -90,6 +90,10 @@ class OptionsState extends MusicBeatState
 		selectorRight = new Alphabet(0, 0, '<', true, false);
 		add(selectorRight);
 
+		#if mobile
+		addVirtualPad(UP_DOWN, A_B);
+		#end
+
 		changeSelection();
 		ClientPrefs.saveSettings();
 
@@ -104,14 +108,14 @@ class OptionsState extends MusicBeatState
 	override function update(elapsed:Float) {
 		super.update(elapsed);
 
-		if (controls.UI_UP_P) {
+		if (controls.UI_UP_P #if mobile || _virtualpad.buttonUp.justPressed #end) {
 			changeSelection(-1);
 		}
-		if (controls.UI_DOWN_P) {
+		if (controls.UI_DOWN_P #if mobile || _virtualpad.buttonDown.justPressed #end) {
 			changeSelection(1);
 		}
 
-		if (controls.BACK) {
+		if (controls.BACK #if mobile || _virtualpad.buttonB.justPressed #end) {
 			FlxG.sound.play(Paths.sound('cancelMenu'));
 			if(onPlayState)
 			{
@@ -122,7 +126,7 @@ class OptionsState extends MusicBeatState
 			else MusicBeatState.switchState(new WeeklyMainMenuState());
 		}
 
-		if (controls.ACCEPT) {
+		if (controls.ACCEPT #if mobile || _virtualpad.buttonA.justPressed #end) {
 			openSelectedSubstate(options[curSelected]);
 		}
 	}
