@@ -180,7 +180,11 @@ class GameplayChangersSubstate extends MusicBeatSubstate
 		        #if mobile
 		        removeVirtualPad();
                         #end
+			#if mobile
+			closeSs();
+			#else
 			close();
+                        #end
 			ClientPrefs.saveSettings();
 			FlxG.sound.play(Paths.sound('cancelMenu'));
 		}
