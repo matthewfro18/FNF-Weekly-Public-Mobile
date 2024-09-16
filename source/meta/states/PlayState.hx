@@ -1449,6 +1449,10 @@ class PlayState extends MusicBeatState
 		// UI_camera.zoom = 1;
 
 		// cameras = [FlxG.cameras.list[1]];
+
+		#if mobile
+		addHitbox(3);
+		#end
 		startingSong = true;
 
 		// SONG SPECIFIC SCRIPTS
@@ -2073,6 +2077,9 @@ class PlayState extends MusicBeatState
 
 	public function startCountdown():Void
 	{
+		#if mobile
+		_hitbox.visible = true;
+		#end
 		if(startedCountdown) {
 			callOnScripts('onStartCountdown', []);
 			return;
@@ -4403,6 +4410,10 @@ class PlayState extends MusicBeatState
 		camZooming = false;
 		inCutscene = false;
 		updateTime = false;
+
+		#if mobile
+		_hitbox.visible = false;
+		#end
 
 		deathCounter = 0;
 		seenCutscene = false;
