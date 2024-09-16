@@ -25,6 +25,7 @@ import hxvlc.flixel.*;
 import mobile.meta.data.SUtil;
 import mobile.flixel.FlxVirtualPad;
 import mobile.flixel.FlxHitbox;
+import mobile.flixel.input.FlxMobileInputID;
 
 //Android
 #if android
