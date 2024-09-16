@@ -46,6 +46,10 @@ class MusicBeatSubstate extends FlxSubState
 	public function removeVirtualPad() {
 		remove(_virtualpad);
 	}
+	public function closeSs() {
+		FlxTransitionableState.skipNextTransOut = true;
+		FlxG.resetState();
+	}
 	#end
 
 	override function update(elapsed:Float)
