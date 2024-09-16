@@ -24,6 +24,7 @@ import hxvlc.flixel.*;
 //Mobile Controls
 import mobile.meta.data.SUtil;
 import mobile.flixel.FlxVirtualPad;
+import mobile.flixel.FlxHitbox;
 
 //Android
 #if android
