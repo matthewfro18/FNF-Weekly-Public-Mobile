@@ -12,6 +12,7 @@ import flixel.util.FlxTimer;
 import flixel.FlxBasic;
 import flixel.math.FlxPoint;
 import flixel.system.FlxSound;
+import flixel.util.FlxDestroyUtil;
 
 #if DISCORD_ALLOWED
 import meta.data.Discord;
