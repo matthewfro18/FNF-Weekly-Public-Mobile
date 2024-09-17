@@ -63,9 +63,9 @@ void main() {
 		
 		vec3 tex = flixel_texture2D(bitmap, uv).xyz;
 		float bitch = 1.0;
-		if (tex.z == 0.0){
-			bitch = 0.0;
-		}
+        if (tex.r == 0.0 && tex.g == 0.0 && tex.b == 0.0){
+            bitch = 0.0;
+        }
 		
 	  gl_FragColor = vec4(flixel_texture2D(bitmap, uv).xyz, bitch);
     }
