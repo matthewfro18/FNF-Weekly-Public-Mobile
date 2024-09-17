@@ -13,7 +13,7 @@ import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
-import gameObjects.PsychVideoSprite;
+import hxcodec.video.VideoPlayer;
 
 import meta.states.*;
 import meta.data.*;
@@ -39,7 +39,7 @@ class FlxSplash extends MusicBeatState
 	var _cachedTimestep:Bool;
 	var _cachedAutoPause:Bool;
 
-	var video:PsychVideoSprite;
+	var videoPlayer:VideoPlayer;
 
 	override public function create():Void
 	{
@@ -58,10 +58,11 @@ class FlxSplash extends MusicBeatState
 		#end
 
 		new FlxTimer().start(1, function(tmr:FlxTimer){
-			video = new PsychVideoSprite();
-			video.load(Paths.video('intro'));
-			video.addCallback(VidCallbacks.ONEND,onComplete);
-			video.play();
+			videoPlayer = new VideoPlayer();
+			videoPlayer.load("assets/videos/intro.mp4");
+			videoPlayer.play();
+			FlxG.stage.addChild(videoPlayer);
+			videoPlayer.onComplete = onComplete;
 		});
 
 		// _times = [0.041, 0.184, 0.334, 0.495, 0.636];
@@ -109,8 +110,8 @@ class FlxSplash extends MusicBeatState
 		#end
 
 		if (FlxG.keys.justPressed.SPACE || FlxG.keys.justPressed.ENTER || justTouched) {
-			if (video != null) {
-				video.stop();
+			if (videoPlayer != null) {
+				videoPlayer.stop();
 				onComplete();
 			}
 
@@ -127,6 +128,10 @@ class FlxSplash extends MusicBeatState
 		// _times = null;
 		// _colors = null;
 		// _functions = null;
+		if (videoPlayer != null) {
+		FlxG.stage.removeChild(videoPlayer);
+		videoPlayer.dispose();
+		}
 		super.destroy();
 	}
 
@@ -233,8 +238,9 @@ class FlxSplash extends MusicBeatState
 		#end
 		// FlxG.stage.removeChild(_sprite);
 		// FlxG.stage.removeChild(_text);
-                if (video != null) {
-		video.destroy();
+                if (videoPlayer != null) {
+		FlxG.stage.removeChild(videoPlayer);
+		videoPlayer.dispose();
 		}
 		FlxG.switchState(Type.createInstance(nextState, []));
 		FlxG.game._gameJustStarted = true;
