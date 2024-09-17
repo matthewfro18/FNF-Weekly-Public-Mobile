@@ -19,6 +19,7 @@ import meta.data.*;
 import meta.CompilationStuff;
 import mobile.meta.states.CopyState;
 import flixel.system.FlxSplash;
+import lime.system.System as LimeSystem;
 
 class Main extends Sprite
 {
