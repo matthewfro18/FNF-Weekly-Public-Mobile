@@ -4843,7 +4843,7 @@ class PlayState extends MusicBeatState
 		//trace('Pressed: ' + eventKey);
 		if(cpuControlled || paused || !startedCountdown)return;
 
-		if (key > -1 && (FlxG.keys.checkStatus(eventKey, JUST_PRESSED) || ClientPrefs.controllerMode))
+		if (key > -1 && (FlxG.keys.checkStatus(eventKey, JUST_PRESSED) || !ClientPrefs.controllerMode))
 		{
 			if(!boyfriend.stunned && generatedMusic && !endingSong)
 			{
