@@ -13,7 +13,7 @@ import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
-import hxcodec.video.VideoPlayer;
+import hxcodec.flixel.FlxVideo as VideoPlayer;
 
 import meta.states.*;
 import meta.data.*;
@@ -59,10 +59,13 @@ class FlxSplash extends MusicBeatState
 
 		new FlxTimer().start(1, function(tmr:FlxTimer){
 			videoPlayer = new VideoPlayer();
-			videoPlayer.load("assets/videos/intro.mp4");
-			videoPlayer.play();
-			FlxG.stage.addChild(videoPlayer);
-			videoPlayer.onComplete = onComplete;
+			videoPlayer.play(Paths.video('intro'));
+			videoPlayer.onEndReached.add(function()
+			{
+				videoPlayer.dispose();
+				onComplete();
+				return;
+			}, true);
 		});
 
 		// _times = [0.041, 0.184, 0.334, 0.495, 0.636];
@@ -128,10 +131,6 @@ class FlxSplash extends MusicBeatState
 		// _times = null;
 		// _colors = null;
 		// _functions = null;
-		if (videoPlayer != null) {
-		FlxG.stage.removeChild(videoPlayer);
-		videoPlayer.dispose();
-		}
 		super.destroy();
 	}
 
@@ -239,7 +238,6 @@ class FlxSplash extends MusicBeatState
 		// FlxG.stage.removeChild(_sprite);
 		// FlxG.stage.removeChild(_text);
                 if (videoPlayer != null) {
-		FlxG.stage.removeChild(videoPlayer);
 		videoPlayer.dispose();
 		}
 		FlxG.switchState(Type.createInstance(nextState, []));
