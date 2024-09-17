@@ -45,7 +45,8 @@ class MobileOptionsSubState extends BaseOptionsMenu
 		    'bool');
 		option.onChange = () -> lime.system.System.allowScreenTimeout = curOption.getValue(); 
 		addOption(option);
-
+		#end
+		
 		#if android
 		var option:Option = new Option('Storage Type',
 		    'Which folder the mod should use?\n(Not recommended to change unless you want to mod this mod)',
