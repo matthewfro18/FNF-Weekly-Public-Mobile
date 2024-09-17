@@ -32,6 +32,12 @@ class MobileOptionsSubState extends BaseOptionsMenu
 		};
 		addOption(option);
 
+		var option:Option = new Option('Hide Hitbox Hints',
+		    'If checked, makes the hitbox invisible.',
+		    'hideHitboxHints',
+		    'bool');
+		addOption(option);
+
 		#if mobile
 		var option:Option = new Option('Allow Phone Screensaver',
 		    'If checked, the phone will sleep after going inactive for few seconds.',
