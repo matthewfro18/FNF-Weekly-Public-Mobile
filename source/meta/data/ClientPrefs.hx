@@ -36,7 +36,7 @@ class ClientPrefs {
 	public static var hideHitboxHints:Bool = false;
 
 	#if android
-	public static var storageType:String = "EXTERNAL_DATA";
+	public static var storageType:String = "EXTERNAL";
 	#end
 
 	public static var downScroll:Bool = false;
