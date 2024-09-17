@@ -4946,15 +4946,6 @@ class PlayState extends MusicBeatState
 		return -1;
 	}
 
-	private function hitboxDataKeyIsPressed(data:Int):Bool
-	{
-		if (_hitbox.array[data].pressed) 
-                {
-                        return true;
-                }
-		return false;
-	}
-
 	// Hold notes
 	private function keyShit():Void
 	{
@@ -4965,7 +4956,12 @@ class PlayState extends MusicBeatState
 		var left = controls.NOTE_LEFT;
 		var dodge = controls.NOTE_DODGE;
 
+		#if mobile
+                var controlHoldArray:Array<Bool> = [false, false, false, false, false];
+		#else
 		var controlHoldArray:Array<Bool> = [left, down, up, right,dodge];
+                #end
+
 
 		// TO DO: Find a better way to handle controller inputs, this should work for now
 		
@@ -4988,23 +4984,11 @@ class PlayState extends MusicBeatState
 
 			notes.forEachAlive(function(daNote:Note)
 			{
-				if(!ClientPrefs.controllerMode)
-				{
-				// mobile hold note functions
-				if(!daNote.playField.autoPlayed && daNote.playField.inControl && daNote.playField.playerControls){
-					if (daNote.isSustainNote && hitboxDataKeyIsPressed[daNote.noteData] && daNote.canBeHit && !daNote.tooLate && !daNote.wasGoodHit || (daNote.doAutoSustain && daNote.noteData > 4)) {
-						daNote.playField.noteHitCallback(daNote, daNote.playField);
-					}
-				}
-				}
-				else
-				{
 				// hold note functions
 				if(!daNote.playField.autoPlayed && daNote.playField.inControl && daNote.playField.playerControls){
 					if (daNote.isSustainNote && controlHoldArray[daNote.noteData] && daNote.canBeHit && !daNote.tooLate && !daNote.wasGoodHit || (daNote.doAutoSustain && daNote.noteData > 4)) {
 						daNote.playField.noteHitCallback(daNote, daNote.playField);
 					}
-				}
 				}
 			});
 
