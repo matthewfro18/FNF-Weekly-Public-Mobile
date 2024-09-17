@@ -4946,6 +4946,15 @@ class PlayState extends MusicBeatState
 		return -1;
 	}
 
+	private function hitboxDataKeyIsPressed(data:Int):Bool
+	{
+		if (_hitbox.array[data].pressed) 
+                {
+                        return true;
+                }
+		return false;
+	}
+
 	// Hold notes
 	private function keyShit():Void
 	{
@@ -4979,11 +4988,23 @@ class PlayState extends MusicBeatState
 
 			notes.forEachAlive(function(daNote:Note)
 			{
+				if(!ClientPrefs.controllerMode)
+				{
+				// mobile hold note functions
+				if(!daNote.playField.autoPlayed && daNote.playField.inControl && daNote.playField.playerControls){
+					if (daNote.isSustainNote && hitboxDataKeyIsPressed[daNote.noteData] && daNote.canBeHit && !daNote.tooLate && !daNote.wasGoodHit || (daNote.doAutoSustain && daNote.noteData > 4)) {
+						daNote.playField.noteHitCallback(daNote, daNote.playField);
+					}
+				}
+				}
+				else
+				{
 				// hold note functions
 				if(!daNote.playField.autoPlayed && daNote.playField.inControl && daNote.playField.playerControls){
 					if (daNote.isSustainNote && controlHoldArray[daNote.noteData] && daNote.canBeHit && !daNote.tooLate && !daNote.wasGoodHit || (daNote.doAutoSustain && daNote.noteData > 4)) {
 						daNote.playField.noteHitCallback(daNote, daNote.playField);
 					}
+				}
 				}
 			});
 
