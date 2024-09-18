@@ -141,7 +141,7 @@ class WeeklyGalleryState extends MusicBeatState
                 group.push('$folder/$image');
             }
             for (desc in descs){
-		    group2.push('$folder/$desc');
+		    group2.push(desc);
 	    }
 		    
             weekImages.push(group);
