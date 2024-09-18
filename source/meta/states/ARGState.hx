@@ -19,7 +19,14 @@ class ARGState extends MusicBeatState
 
     override public function update(elapsed:Float)
     {
-        if (controls.BACK)
+	var justTouched:Bool = false;
+
+		#if mobile
+                for (touch in FlxG.touches.list)
+	                if (touch.justPressed)
+		                justTouched = true;
+		#end
+        if (controls.BACK || justTouched)
         {
             FlxG.sound.play(Paths.sound('cancelMenu'));
             MusicBeatState.switchState(new WeeklyMainMenuState());
