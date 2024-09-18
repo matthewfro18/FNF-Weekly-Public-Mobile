@@ -126,7 +126,12 @@ class WeeklyGalleryState extends MusicBeatState
             var allFiles = FileSystem.readDirectory(Paths.file('images/gallery/weeks/$folder'));
             allFiles.sort(function(a, b) return Std.parseInt(a) - Std.parseInt(b));        
             var images = [];
-            for(i in allFiles) if(i.contains(".png") && !i.contains("button") && !i.contains(".txt")) images.push(i);
+	    var descs = []; 
+            for(i in allFiles) {
+		    if(i.contains(".png") && !i.contains("button") && !i.contains(".txt")) images.push(i);
+		    if(!i.contains(".png") && !i.contains("button") && i.contains(".txt")) descs.push(i);
+	    }
+
 
             var group:Array<String> = [];
             var group2:Array<String> = [];
@@ -134,13 +139,11 @@ class WeeklyGalleryState extends MusicBeatState
             for(image in images){
                 //trace(image);
                 group.push('$folder/$image');
-
-                var txtvers = Paths.file('images/gallery/weeks/$folder/$image.'.replace(".png", ".txt"));
-                var textToPush:String = '[No description avaliable]';
-                if (FileSystem.exists(txtvers)) textToPush = CoolUtil.coolTextFile(txtvers).join('\n');
-                group2.push(textToPush);
             }
-            
+            for (desc in descs){
+		    group2.push('$folder/$desc');
+	    }
+		    
             weekImages.push(group);
             weekDescriptions.push(group2);
         }
