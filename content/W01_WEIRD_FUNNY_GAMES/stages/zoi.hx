@@ -62,7 +62,7 @@ function onCreatePost(){
     game.healthBar.updateHitbox();
     game.healthBar.screenCenter(FlxAxes.X);
 
-    FlxHitbox.updateHitboxDimensions(1024, 960);
+    FlxHitbox.updateHitboxDimensions(1024, 768);
 }
 
 function opponentNoteHit(note){
