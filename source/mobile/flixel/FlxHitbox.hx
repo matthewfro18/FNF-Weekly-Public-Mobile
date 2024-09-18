@@ -11,10 +11,7 @@ import openfl.display.Shape;
 
 class FlxHitbox extends FlxSpriteGroup {
 	var scaleMode = FlxG.scaleMode as FunkinRatioScaleMode;
-        if (scaleMode != null) {
-            trace(scaleMode.width);
-            trace(scaleMode.height);
-        }
+	
 	public var hitbox:FlxSpriteGroup;
 
 	public var array:Array<FlxButton> = [];
@@ -33,6 +30,11 @@ class FlxHitbox extends FlxSpriteGroup {
 
 	public function new(?type:Int = 3) {
 		super();
+
+		if (scaleMode != null) {
+                    trace(scaleMode.width);
+                    trace(scaleMode.height);
+		}
 		hitbox = new FlxSpriteGroup();
 		
 		var keyCount:Int = type + 1;
