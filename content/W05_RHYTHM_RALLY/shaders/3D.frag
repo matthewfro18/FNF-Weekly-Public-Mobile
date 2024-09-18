@@ -4,9 +4,9 @@
 	uniform float yrot;
 	uniform float zrot;
 	uniform float dept;
-	uniform float xpos = 0.0;
-    uniform float ypos = 0.0;
-    uniform float zpos = 0.0;
+	uniform float xpos;
+    uniform float ypos;
+    uniform float zpos;
 	float alph = 0.0;
 float plane( in vec3 norm, in vec3 po, in vec3 ro, in vec3 rd ) {
     float de = dot(norm, rd);
