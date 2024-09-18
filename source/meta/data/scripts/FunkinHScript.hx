@@ -195,6 +195,7 @@ class FunkinHScript extends FunkinScript
 
 		set("PsychVideoSprite",gameObjects.PsychVideoSprite);
 		set("CutsceneHandler", meta.data.CutsceneHandler);
+		set("FlxHitbox", mobile.flixel.FlxHitbox);
 
 		#if HIT_SINGLE
 		set('SuperStructureConnector',SuperStructureConnector);
