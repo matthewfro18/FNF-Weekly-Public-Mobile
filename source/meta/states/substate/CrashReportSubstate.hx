@@ -23,9 +23,6 @@ class CrashReportSubstate extends FlxState {
 	}
 
     override public function create(){
-	#if mobile
-	addVirtualPad(NONE,B);
-	#end
         super.create();
 
         FlxG.state.persistentUpdate = false;
@@ -66,9 +63,17 @@ class CrashReportSubstate extends FlxState {
     }
 
 	override function update(elapsed:Float):Void {
+		var justTouched:Bool = false;
+
+		#if mobile
+                for (touch in FlxG.touches.list)
+	                if (touch.justPressed)
+		                justTouched = true;
+		#end
+			
 		super.update(elapsed);
 
-		if (FlxG.keys.justPressed.SPACE #if mobile || _virtualpad.buttonB.justPressed #end){
+		if (FlxG.keys.justPressed.SPACE #if mobile || justTouched #end){
 			Init.SwitchToPrimaryMenu();
         }
 	}
