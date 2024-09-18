@@ -244,7 +244,7 @@ class WeeklyGalleryState extends MusicBeatState
 	    
 	var filePath:String = 'assets/images/gallery/weeks/${descriptionFileName}';
 
-        description.text = CoolUtil.coolTextFile(filePath);
+        description.text = Paths.getTextFromFile(filePath);
         counter.text = '${curImg + 1}';
 
         FlxG.sound.play(Paths.sound('scrollMenu'));
