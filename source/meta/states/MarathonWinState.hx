@@ -85,9 +85,17 @@ class MarathonWinState extends MusicBeatState
 
 	override function update(elapsed:Float)
 	{
+		var justTouched:Bool = false;
+
+		#if mobile
+                for (touch in FlxG.touches.list)
+	                if (touch.justPressed)
+		                justTouched = true;
+		#end
+			
 		super.update(elapsed);
 
-		if (controls.BACK || controls.ACCEPT)
+		if (controls.BACK || controls.ACCEPT || justTouched)
 		{
 			FlxG.sound.music.stop();
 			PlayState.deathCounter = 0;
