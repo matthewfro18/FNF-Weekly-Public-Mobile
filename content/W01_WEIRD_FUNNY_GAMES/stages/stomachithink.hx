@@ -29,8 +29,8 @@ function onLoad()
     add(fade);
 
     // shoutouts wingblings for da shader
-    distortion = newShader('defective');
-    ExUtils.addShader(distortion, game.camGame);
+    //distortion = newShader('defective');
+    //ExUtils.addShader(distortion, game.camGame);
 }
 
 function onCreatePost()
