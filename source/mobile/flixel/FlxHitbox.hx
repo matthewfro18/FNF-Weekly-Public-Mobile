@@ -8,6 +8,7 @@ import flixel.FlxSprite;
 import flixel.FlxG;
 import openfl.display.BitmapData;
 import openfl.display.Shape;
+import meta.data.FunkinRatioScaleMode;
 
 class FlxHitbox extends FlxSpriteGroup {
 
@@ -41,9 +42,9 @@ class FlxHitbox extends FlxSpriteGroup {
 		hitbox = new FlxSpriteGroup();
 		
 		var keyCount:Int = type + 1;
-		var hitboxWidth:Int = Math.floor(FlxG.scaleMode.width / keyCount);
+		var hitboxWidth:Int = Math.floor(scaleMode.width / keyCount);
 		for (i in 0 ... keyCount) {
-			hitbox.add(add(array[i] = createhitbox(hitboxWidth * i, 0, hitboxWidth, FlxG.scaleMode.height, hitboxColor[keyCount][i])));
+			hitbox.add(add(array[i] = createhitbox(hitboxWidth * i, 0, hitboxWidth, scaleMode.height, hitboxColor[keyCount][i])));
       array[i].stringIDs = ['${type}_key_${keyCount}'];
 		}
 	}
