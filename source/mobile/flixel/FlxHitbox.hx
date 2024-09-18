@@ -8,12 +8,8 @@ import flixel.FlxSprite;
 import flixel.FlxG;
 import openfl.display.BitmapData;
 import openfl.display.Shape;
-import meta.data.FunkinRatioScaleMode;
 
 class FlxHitbox extends FlxSpriteGroup {
-
-	var scaleMode:FunkinRatioScaleMode;
-	
 	public var hitbox:FlxSpriteGroup;
 
 	public var array:Array<FlxButton> = [];
@@ -32,19 +28,12 @@ class FlxHitbox extends FlxSpriteGroup {
 
 	public function new(?type:Int = 3) {
 		super();
-
-		scaleMode = FlxG.scaleMode as FunkinRatioScaleMode;
-
-		if (scaleMode != null) {
-                    trace(scaleMode.width);
-                    trace(scaleMode.height);
-		}
 		hitbox = new FlxSpriteGroup();
 		
 		var keyCount:Int = type + 1;
-		var hitboxWidth:Int = Math.floor(scaleMode.width / keyCount);
+		var hitboxWidth:Int = Math.floor(FlxG.width / keyCount);
 		for (i in 0 ... keyCount) {
-			hitbox.add(add(array[i] = createhitbox(hitboxWidth * i, 0, hitboxWidth, scaleMode.height, hitboxColor[keyCount][i])));
+			hitbox.add(add(array[i] = createhitbox(hitboxWidth * i, 0, hitboxWidth, FlxG.height, hitboxColor[keyCount][i])));
       array[i].stringIDs = ['${type}_key_${keyCount}'];
 		}
 	}
