@@ -97,16 +97,20 @@ class FlxHitbox extends FlxSpriteGroup {
 
 	// Function to update hitbox dimensions dynamically
         public function updateHitboxDimensions(width:Float, height:Float):Void {
-            var keyCount:Int = array.length;
-            var hitboxWidth:Int = Math.floor(width / keyCount);
+    var keyCount:Int = array.length;
 
-            for (i in 0 ... keyCount) {
-                array[i].x = hitboxWidth * i;
-                array[i].width = hitboxWidth;
-                array[i].height = height;
-                array[i].updateHitbox();
-        }
-        }
+    // Adjust hitbox width with scaling factor
+    var hitboxWidth:Int = Math.floor((width / keyCount) * FlxG.scaleMode.scale.x);
+    var scaledHeight:Int = Math.floor(height * FlxG.scaleMode.scale.y);  // Adjust height for scaling
+
+    // Update each hitbox button
+    for (i in 0 ... keyCount) {
+        array[i].x = hitboxWidth * i;      // Update X position
+        array[i].width = hitboxWidth;      // Update width
+        array[i].height = scaledHeight;    // Update height
+        array[i].updateHitbox();           // Update hitbox dimensions
+    }
+	}
 
 	override public function destroy():Void {
 		super.destroy();
