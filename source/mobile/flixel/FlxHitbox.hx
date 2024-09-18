@@ -10,7 +10,6 @@ import openfl.display.BitmapData;
 import openfl.display.Shape;
 
 class FlxHitbox extends FlxSpriteGroup {
-	var scaleMode = FlxG.scaleMode as FunkinRatioScaleMode;
 	
 	public var hitbox:FlxSpriteGroup;
 
@@ -30,6 +29,8 @@ class FlxHitbox extends FlxSpriteGroup {
 
 	public function new(?type:Int = 3) {
 		super();
+
+		var scaleMode = FlxG.scaleMode as FunkinRatioScaleMode;
 
 		if (scaleMode != null) {
                     trace(scaleMode.width);
