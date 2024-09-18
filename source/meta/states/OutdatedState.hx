@@ -23,12 +23,15 @@ class OutdatedState extends MusicBeatState
 	
 	override function create()
 		{
+			#if mobile
+			addVirtualPad(NONE,A_B);
+			#end
 			super.create();
 			
 			var bg:FlxSprite = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
 			add(bg);
 
-			var http = new haxe.Http("https://raw.githubusercontent.com/OrbyyOrbinaut/FNF-Weekly-Public/main/VERSION.txt");
+			var http = new haxe.Http("https://raw.githubusercontent.com/Heropowerbrine/FNF-Weekly-Public/main/VERSION.txt");
 			// link to the Github txt that tells you the version
 			// ("https://raw.githubusercontent.com/Crossknife/FNF-Weekly-TEST/main/VERSION.txt");
 			// do rawgithub
@@ -61,7 +64,7 @@ class OutdatedState extends MusicBeatState
 					"Your version of FNF Weekly is outdated,\n\n
 					Would you like to update?\n\n
 					Press Escape To skip the update\n
-					Press Enter To download the update (Will open command prompt)\n
+					Press Enter To download the update (PC ONLY)\n
 					
 					(You can disable this prompt in options)
 					UPDATE : " + updateV,
@@ -78,7 +81,7 @@ class OutdatedState extends MusicBeatState
 	override function update(elapsed:Float)
 	{
 		if(!leftState) {
-			if (controls.ACCEPT) {
+			if (controls.ACCEPT #if mobile || _virtualpad.buttonA.justPressed #end) {
 				if (ClientPrefs.checkForUpdates == 1) {
 					// (ClientPrefs.checkForUpdates == 1) 0 = off, 1 = link, 2 = auto update
 					CoolUtil.browserLoad("https://gamebanana.com/mods/522709");
@@ -87,7 +90,7 @@ class OutdatedState extends MusicBeatState
 					MusicBeatState.switchState(new UpdatingState());
 				}
 			}
-			if(controls.BACK) {
+			if(controls.BACK #if mobile || _virtualpad.buttonB.justPressed #end) {
 				leftState = true;
 			}
 
