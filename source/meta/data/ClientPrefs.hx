@@ -53,7 +53,7 @@ class ClientPrefs {
 	public static var camZooms:Bool = true;
 	public static var hideHud:Bool = false;
 	public static var camMovement:Bool = true;
-	public static var checkForUpdates:Int = 2;
+	public static var checkForUpdates:Int = 0;
 	public static var noteOffset:Int = 0;
 	public static var arrowHSV:Array<Array<Int>> = [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]];
 	public static var quantHSV:Array<Array<Int>> = [
