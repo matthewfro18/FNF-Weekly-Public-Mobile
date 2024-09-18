@@ -240,9 +240,7 @@ class WeeklyGalleryState extends MusicBeatState
         }
         FlxObjectTools.centerOnSprite(image, bg);
 
-	var filePath = 'assets/images/gallery/weeks/${weekDescriptions[curWeek][curImg]}';
-
-        description.text = CoolUtil.coolTextFile(filePath);
+        description.text = CoolUtil.coolTextFile('assets/images/gallery/weeks/${weekDescriptions[curWeek][curImg][0]}');
         counter.text = '${curImg + 1}';
 
         FlxG.sound.play(Paths.sound('scrollMenu'));
