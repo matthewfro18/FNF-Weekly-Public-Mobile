@@ -31,7 +31,7 @@ class FlxHitbox extends FlxSpriteGroup {
 		hitbox = new FlxSpriteGroup();
 		
 		var keyCount:Int = type + 1;
-		var hitboxWidth:Int = Math.floor(FlxG.width / keyCount);
+		var hitboxWidth:Int = Math.floor(FlxG.camera.width / keyCount);
 		for (i in 0 ... keyCount) {
 			hitbox.add(add(array[i] = createhitbox(hitboxWidth * i, 0, hitboxWidth, FlxG.camera.height, hitboxColor[keyCount][i])));
       array[i].stringIDs = ['${type}_key_${keyCount}'];
