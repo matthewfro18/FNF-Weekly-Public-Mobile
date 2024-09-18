@@ -38,6 +38,8 @@ function onCreatePost(){
     FlxG.camera.height = 960;
     game.camHUD.height = 960;
 
+    FlxHitbox.updateHitboxDimensions(1024, 768);
+
     GameOverSubstate.characterName = "farmer-bf-dead";
     GameOverSubstate.endSoundName = "empty";
     GameOverSubstate.deathSoundName = "farmerbfdeath";
