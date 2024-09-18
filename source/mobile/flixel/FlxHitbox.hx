@@ -10,6 +10,11 @@ import openfl.display.BitmapData;
 import openfl.display.Shape;
 
 class FlxHitbox extends FlxSpriteGroup {
+	var scaleMode = FlxG.scaleMode as FunkinRatioScaleMode;
+        if (scaleMode != null) {
+            trace(scaleMode.width);
+            trace(scaleMode.height);
+        }
 	public var hitbox:FlxSpriteGroup;
 
 	public var array:Array<FlxButton> = [];
@@ -31,9 +36,9 @@ class FlxHitbox extends FlxSpriteGroup {
 		hitbox = new FlxSpriteGroup();
 		
 		var keyCount:Int = type + 1;
-		var hitboxWidth:Int = Math.floor(FlxG.camera.width / keyCount);
+		var hitboxWidth:Int = Math.floor(FlxG.scaleMode.width / keyCount);
 		for (i in 0 ... keyCount) {
-			hitbox.add(add(array[i] = createhitbox(hitboxWidth * i, 0, hitboxWidth, FlxG.camera.height, hitboxColor[keyCount][i])));
+			hitbox.add(add(array[i] = createhitbox(hitboxWidth * i, 0, hitboxWidth, FlxG.scaleMode.height, hitboxColor[keyCount][i])));
       array[i].stringIDs = ['${type}_key_${keyCount}'];
 		}
 	}
