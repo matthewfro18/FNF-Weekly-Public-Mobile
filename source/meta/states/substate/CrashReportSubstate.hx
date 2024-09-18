@@ -23,6 +23,9 @@ class CrashReportSubstate extends FlxState {
 	}
 
     override public function create(){
+	#if mobile
+	addVirtualPad(NONE,B);
+	#end
         super.create();
 
         FlxG.state.persistentUpdate = false;
@@ -42,7 +45,7 @@ class CrashReportSubstate extends FlxState {
 		coolText.color = flixel.util.FlxColor.RED;
 		add(coolText);
 
-		var formattedErrorMessage:String = 'Your game has crashed! \nError caught: ${errorName}\n\n${error}\n\nPlease report this error to duskiewhy on discord (if unmodified hit single use)';
+		var formattedErrorMessage:String = 'Your game has crashed! \nError caught: ${errorName}\n\n${error}\n\nPlease report this error to duskiewhy on discord (if unmodified hit single use)\nIf Android Port, contact Heropowerbrine on discord';
 
 		var report:FlxText = new FlxText(0, 0, FlxG.width / 1.5, formattedErrorMessage);
 		report.setFormat(Paths.font('vcr.ttf'), 32, 0xFFFFFFFF, CENTER, OUTLINE, 0xFF000000);
@@ -50,7 +53,7 @@ class CrashReportSubstate extends FlxState {
 		report.borderSize = 1.5;
 		add(report);
 
-		underText = new FlxText(0, FlxG.height - 64, FlxG.width, "Press SPACE to return to the Menu Screen.");
+		underText = new FlxText(0, FlxG.height - 64, FlxG.width, "Press B to return to the Menu Screen.");
 		underText.setFormat(Paths.font('vcr.ttf'), 24, 0xFFFFFFFF, CENTER, OUTLINE, 0xFF000000);
 		underText.y = FlxG.height - underText.height - 16;
 		underText.borderSize = 1;
@@ -65,7 +68,7 @@ class CrashReportSubstate extends FlxState {
 	override function update(elapsed:Float):Void {
 		super.update(elapsed);
 
-		if (FlxG.keys.justPressed.SPACE){
+		if (FlxG.keys.justPressed.SPACE #if mobile || _virtualpad.buttonB.justPressed #end){
 			Init.SwitchToPrimaryMenu();
         }
 	}
