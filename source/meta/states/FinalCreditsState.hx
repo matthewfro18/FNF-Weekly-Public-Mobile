@@ -68,7 +68,7 @@ class FinalCreditsState extends MusicBeatState
             FlxG.sound.music.looped = true;
         }
 
-        if ((controls.ACCEPT #if mobile justTouched #end) && ended == true)
+        if (controls.ACCEPT || justTouched && ended == true)
         {
 			Init.SwitchToPrimaryMenu(WeeklyMainMenuState);
             FlxG.sound.playMusic(Paths.music(KUTValueHandler.getMenuMusic()));
