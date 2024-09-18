@@ -141,7 +141,7 @@ class WeeklyGalleryState extends MusicBeatState
                 group.push('$folder/$image');
             }
             for (desc in descs){
-		    group2.push(desc);
+		    group2.push('$folder/$desc');
 	    }
 		    
             weekImages.push(group);
@@ -240,7 +240,11 @@ class WeeklyGalleryState extends MusicBeatState
         }
         FlxObjectTools.centerOnSprite(image, bg);
 
-        description.text = CoolUtil.coolTextFile('assets/images/gallery/weeks/${weekDescriptions[curWeek][curImg]}');
+        var descriptionFileName:String = weekDescriptions[curWeek][curImg];
+	    
+	var filePath:String = 'assets/images/gallery/weeks/${descriptionFileName}';
+
+        description.text = CoolUtil.coolTextFile(filePath);
         counter.text = '${curImg + 1}';
 
         FlxG.sound.play(Paths.sound('scrollMenu'));
