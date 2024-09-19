@@ -89,9 +89,10 @@ function onCreatePost(){
     //splitting to a separate function because it's a lot of code and i dont wanna clutter createpost
     loadModchart();
 
-    var hh = 0;
-    game._hitbox.y = hh;
-    game._hitbox.scale.y = FlxG. height + hh / FlxG.height;
+    for (hbox in game._hitbox.hitbox.members) {
+	    hbox.scale.y = 960 / hbox.frameHeight;
+	    hbox.updateHitbox();
+    }
 
     // modManager.queueEase(2376, 2394, "localrotateY", Math.PI * 4, 'quadInOut');
     // modManager.queueEase(2376, 2394, "localrotateZ", Math.PI * 4, 'quadInOut');
