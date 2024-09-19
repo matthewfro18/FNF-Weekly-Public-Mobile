@@ -47,6 +47,9 @@ class MarathonButtonsSubstate extends MusicBeatSubstate
 		noText.screenCenter(X);
 		noText.x += 200;
 		add(noText);
+		#if mobile
+		addVirtualPad(LEFT_RIGHT, A_B);
+		#end
 		updateOptions();
 	}
 
@@ -60,15 +63,15 @@ class MarathonButtonsSubstate extends MusicBeatSubstate
 			spr.alpha += elapsed * 2.5;
 		}
 
-		if(controls.UI_LEFT_P || controls.UI_RIGHT_P) {
+		if(controls.UI_LEFT_P || controls.UI_RIGHT_P #if mobile || _virtualpad.buttonLeft.justPressed || _virtualpad.buttonRight.justPressed #end) {
 			FlxG.sound.play(Paths.sound('scrollMenu'), 1);
 			onYes = !onYes;
 			updateOptions();
 		}
-		if(controls.BACK) {
+		if(controls.BACK #if mobile || _virtualpad.buttonB.justPressed #end) {
 			FlxG.sound.play(Paths.sound('cancelMenu'), 1);
 			close();
-		} else if(controls.ACCEPT) {
+		} else if(controls.ACCEPT #if mobile || _virtualpad.buttonA.justPressed #end) {
 			if(onYes) {
 				Highscore.resetMarathon();
 			}
