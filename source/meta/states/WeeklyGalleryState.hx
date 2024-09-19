@@ -242,7 +242,7 @@ class WeeklyGalleryState extends MusicBeatState
 
         var descriptionFileName:String = weekDescriptions[curWeek][curImg];
 	    
-	var filePath:String = 'assets/images/gallery/weeks/${descriptionFileName}';
+	var filePath:String = 'images/gallery/weeks/${descriptionFileName}';
 
         description.text = Paths.getTextFromFile(filePath);
         counter.text = '${curImg + 1}';
