@@ -101,9 +101,10 @@ class FlxHitbox extends FlxSpriteGroup {
             var hitboxWidth:Int = Math.floor(width / keyCount);
 
             for (i in 0 ... keyCount) {
+		array[i].scale.set(1, 1);  // reset scaling
                 array[i].x = hitboxWidth * i;
                 array[i].width = hitboxWidth;
-                array[i].height = height;
+                array[i].height = height;  // set the height
                 array[i].updateHitbox();
         }
         }
