@@ -61,8 +61,6 @@ function onCreatePost(){
     game.healthBar.scale.set(1.5, 1);
     game.healthBar.updateHitbox();
     game.healthBar.screenCenter(FlxAxes.X);
-
-    FlxHitbox.updateHitboxDimensions(FlxG.width, FlxG.height);
 }
 
 function opponentNoteHit(note){
