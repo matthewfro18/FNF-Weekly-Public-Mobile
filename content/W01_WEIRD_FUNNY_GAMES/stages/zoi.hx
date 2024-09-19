@@ -62,9 +62,10 @@ function onCreatePost(){
     game.healthBar.updateHitbox();
     game.healthBar.screenCenter(FlxAxes.X);
 
-    var hh = 0;
-    game._hitbox.y = hh;
-    game._hitbox.scale.y = FlxG. height + hh / FlxG.height;
+    for (hbox in game._hitbox.hitbox.members) {
+	    hbox.scale.y = 960 / hbox.frame.Height;
+	    hbox.updateHitbox();
+    }
 }
 
 function opponentNoteHit(note){
