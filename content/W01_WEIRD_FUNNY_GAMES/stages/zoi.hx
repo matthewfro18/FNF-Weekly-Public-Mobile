@@ -37,6 +37,10 @@ function onCreatePost(){
     FlxG.scaleMode.height = 960;    
     FlxG.camera.height = 960;
     game.camHUD.height = 960;
+    for (hbox in game._hitbox.hitbox.members) {
+	    hbox.scale.y = 960 / hbox.frameHeight;
+	    hbox.updateHitbox();
+    }
 
     GameOverSubstate.characterName = "farmer-bf-dead";
     GameOverSubstate.endSoundName = "empty";
@@ -61,11 +65,6 @@ function onCreatePost(){
     game.healthBar.scale.set(1.5, 1);
     game.healthBar.updateHitbox();
     game.healthBar.screenCenter(FlxAxes.X);
-
-    for (hbox in game._hitbox.hitbox.members) {
-	    hbox.scale.y = 960 / hbox.frame.Height;
-	    hbox.updateHitbox();
-    }
 }
 
 function opponentNoteHit(note){
