@@ -49,8 +49,10 @@ class GameOverSubstate extends MusicBeatSubstate
 		PlayState.instance.callOnScripts('onGameOverStart', []);
 
 		#if mobile
+		if (!isVideo) {
 		addVirtualPad(NONE,A_B);
 		addVirtualPadCamera();
+		}
 		#end
 
 		super.create();
