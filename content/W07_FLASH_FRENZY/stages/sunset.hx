@@ -59,6 +59,17 @@ function onCreatePost()
     FlxG.scaleMode.width = newWidth;
     FlxG.scaleMode.height = newHeight;
 
+	var hitbox = game._hitbox.hitbox;
+    for (hbox in hitbox.members) {
+    	hbox.scale.x = (newWidth / 4) / hbox.frameWidth;
+    	hbox.scale.y = newHeight / hbox.frameHeight;
+    	hbox.updateHitbox();
+    	hbox.cameras = [game.camOther];
+    }
+    for (index in 0 ... hitbox.length) {
+    	hitbox.members[index].x = hitbox.members[index].width * index;
+    }
+
     var bars:FlxSprite = new FlxSprite(0, 0);
     bars.loadGraphic(Paths.image("ffsonic/ui/baroverlay"));
     bars.antialiasing = false;
