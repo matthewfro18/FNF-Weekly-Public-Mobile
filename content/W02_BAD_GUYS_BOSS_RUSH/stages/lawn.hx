@@ -179,7 +179,7 @@ function onCreatePost()
     
     game.camHUD.alpha = 0.001;
     helpText3 = new FlxText(50, 50, -1, 'Your Front Lawn');
-    helpText3.setFormat(Paths.font("pvz2.ttf"), 48, FlxColor.WHITE, FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE, 0xFF000000);
+    helpText3.setFormat(Paths.font("pvz2.TTF"), 48, FlxColor.WHITE, FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE, 0xFF000000);
     helpText3.scrollFactor.set(0,0);
     helpText3.screenCenter();
     helpText3.borderSize = 2;
