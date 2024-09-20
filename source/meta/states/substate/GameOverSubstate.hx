@@ -129,6 +129,7 @@ class GameOverSubstate extends MusicBeatSubstate
 	        if (_virtualpad != null) {
 			if (_virtualpad.buttonA.justPressed)
 				vPadjustTouched = true;
+		}
 		#end
 		
 		PlayState.instance.callOnScripts('onUpdate', [elapsed]);
