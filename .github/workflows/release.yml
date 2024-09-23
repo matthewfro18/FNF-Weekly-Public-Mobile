@@ -42,6 +42,7 @@ jobs:
           haxelib install flxanimate 3.0.4 --quiet
           haxelib install away3d
           haxelib install hscript
+          haxelib install discord_rpc
           haxelib git hxvlc https://github.com/MAJigsaw77/hxvlc 70e7f5f3e76d526ac6fb8f0e6665efe7dfda589d --quiet --skip-dependencies
           haxelib git linc_luajit https://github.com/mcagabe19-stuff/linc_luajit-rewriten main --quiet
           haxelib git hxdiscord_rpc https://github.com/MAJigsaw77/hxdiscord_rpc 3538a1c2bb07b04208cd014220207f8173acdb21 --quiet
@@ -119,6 +120,7 @@ jobs:
           haxelib install flxanimate 3.0.4 --quiet
           haxelib install away3d
           haxelib install hscript
+          haxelib install discord_rpc
           haxelib git hxvlc https://github.com/MAJigsaw77/hxvlc 70e7f5f3e76d526ac6fb8f0e6665efe7dfda589d --quiet --skip-dependencies
           haxelib git linc_luajit https://github.com/mcagabe19-stuff/linc_luajit-rewriten main --quiet
           haxelib git hxdiscord_rpc https://github.com/MAJigsaw77/hxdiscord_rpc 3538a1c2bb07b04208cd014220207f8173acdb21 --quiet --skip-dependencies
