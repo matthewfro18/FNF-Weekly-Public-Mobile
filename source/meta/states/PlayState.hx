@@ -203,6 +203,7 @@ class PlayState extends MusicBeatState
 	public var dad:Character = null;
 	public var gf:Character = null;
 	public var boyfriend:Boyfriend = null;
+	public var beatsPerZoom:Int = 4;
 
 	public var notes:FlxTypedGroup<Note>;
 	public var unspawnNotes:Array<Note> = [];
@@ -256,6 +257,7 @@ class PlayState extends MusicBeatState
 
 	public var card:SongCard;
 	public var hasMetadata:Bool;
+	public static var qqqeb:Bool = false;
 
 	public var ratingsData:Array<Rating> = [];
 	public var epics:Int = 0;
@@ -590,7 +592,7 @@ class PlayState extends MusicBeatState
 		healthLoss = ClientPrefs.getGameplaySetting('healthloss', 1);
 		instakillOnMiss = ClientPrefs.getGameplaySetting('instakill', false);
 		practiceMode = ClientPrefs.getGameplaySetting('practice', false);
-		cpuControlled = false; //ClientPrefs.getGameplaySetting('botplay', false);
+		cpuControlled = ClientPrefs.getGameplaySetting('botplay', false);
         // ^^ i dont think theres a way to toggle cpucontrolled in menus????? so im doing this
 
 		// var gameCam:FlxCamera = FlxG.camera;
@@ -736,6 +738,14 @@ class PlayState extends MusicBeatState
 		ihatemylifethisisthelastthingthatneedstobecoded = false;
 
 		setOnScripts('stage', stage);
+		
+		switch (curStage)
+		{
+			case 'zoi':
+                        qqqeb = true;
+			case 'stage':
+			qqqeb = true;
+		}
 
 		#if loadBenchmark
 		var startLoadTime = Sys.time();
@@ -1426,6 +1436,11 @@ class PlayState extends MusicBeatState
 		if (hasMetadata) card.cameras = [camOther];
 		topBar.cameras = [camOther];
 		bottomBar.cameras = [camOther];
+		
+		#if mobile
+                addMobileControls(false);
+                mobileControls.visible = false;
+                #end
 
 		setOnScripts('playFields', playFields);
 		setOnScripts('grpNoteSplashes', grpNoteSplashes);
@@ -1449,10 +1464,6 @@ class PlayState extends MusicBeatState
 		// UI_camera.zoom = 1;
 
 		// cameras = [FlxG.cameras.list[1]];
-
-		#if mobile
-		addHitbox(3);
-		#end
 		startingSong = true;
 
 		// SONG SPECIFIC SCRIPTS
@@ -2077,9 +2088,6 @@ class PlayState extends MusicBeatState
 
 	public function startCountdown():Void
 	{
-		#if mobile
-		_hitbox.visible = true;
-		#end
 		if(startedCountdown) {
 			callOnScripts('onStartCountdown', []);
 			return;
@@ -2099,6 +2107,10 @@ class PlayState extends MusicBeatState
 		if(ret != Globals.Function_Stop) {
 			if (skipCountdown || startOnTime > 0) skipArrowStartTween = true;
 
+			#if mobile
+			mobileControls.visible = true;
+			#end
+			
 			//generateStaticArrows(0, skipArrowStartTween );
 			//generateStaticArrows(1, skipArrowStartTween );
 
@@ -3241,7 +3253,7 @@ class PlayState extends MusicBeatState
 		// 	botplayTxt.alpha = 1 - Math.sin((Math.PI * botplaySine) / 180);
 		// }
 
-		if ((controls.PAUSE #if android || FlxG.android.justReleased.BACK #end) && startedCountdown && canPause)
+		if (controls.PAUSE #if android || FlxG.android.justReleased.BACK #end && startedCountdown && canPause)
 		{
 			var ret:Dynamic = callOnScripts('onPause', []);
 			if(ret != Globals.Function_Stop) {
@@ -4411,12 +4423,12 @@ class PlayState extends MusicBeatState
 		inCutscene = false;
 		updateTime = false;
 
-		#if mobile
-		_hitbox.visible = false;
-		#end
-
 		deathCounter = 0;
 		seenCutscene = false;
+		
+		#if mobile
+		mobileControls.visible = false;
+		#end
 
 		#if ACHIEVEMENTS_ALLOWED
 		if(achievementObj != null) {
@@ -4843,7 +4855,7 @@ class PlayState extends MusicBeatState
 		//trace('Pressed: ' + eventKey);
 		if(cpuControlled || paused || !startedCountdown)return;
 
-		if (key > -1 && (FlxG.keys.checkStatus(eventKey, JUST_PRESSED) || !ClientPrefs.controllerMode))
+		if (key > -1 && (FlxG.keys.checkStatus(eventKey, JUST_PRESSED) || ClientPrefs.controllerMode))
 		{
 			if(!boyfriend.stunned && generatedMusic && !endingSong)
 			{
@@ -4946,15 +4958,6 @@ class PlayState extends MusicBeatState
 		return -1;
 	}
 
-	private function hitboxDataKeyIsPressed(data:Int):Bool
-	{
-		if (_hitbox.array[data].pressed) 
-                {
-                        return true;
-                }
-		return false;
-	}
-
 	// Hold notes
 	private function keyShit():Void
 	{
@@ -4968,17 +4971,17 @@ class PlayState extends MusicBeatState
 		var controlHoldArray:Array<Bool> = [left, down, up, right,dodge];
 
 		// TO DO: Find a better way to handle controller inputs, this should work for now
-		
-		if(!ClientPrefs.controllerMode)
+		if(ClientPrefs.controllerMode)
 		{
-			#if android
-			for (i in 0..._hitbox.array.length) {
-				if (_hitbox.array[i].justPressed)
+			var controlArray:Array<Bool> = [controls.NOTE_LEFT_P, controls.NOTE_DOWN_P, controls.NOTE_UP_P, controls.NOTE_RIGHT_P];
+			if(controlArray.contains(true))
+			{
+				for (i in 0...controlArray.length)
 				{
-				       onKeyPress(new KeyboardEvent(KeyboardEvent.KEY_DOWN, true, true, -1, keysArray[i][0]));
+					if(controlArray[i])
+						onKeyPress(new KeyboardEvent(KeyboardEvent.KEY_DOWN, true, true, -1, keysArray[i][0]));
 				}
 			}
-			#end
 		}
 
 		// FlxG.watch.addQuick('asdfa', upP);
@@ -4988,23 +4991,11 @@ class PlayState extends MusicBeatState
 
 			notes.forEachAlive(function(daNote:Note)
 			{
-				if(!ClientPrefs.controllerMode)
-				{
-				// mobile hold note functions
-				if(!daNote.playField.autoPlayed && daNote.playField.inControl && daNote.playField.playerControls){
-					if (daNote.isSustainNote && hitboxDataKeyIsPressed(daNote.noteData) && daNote.canBeHit && !daNote.tooLate && !daNote.wasGoodHit || (daNote.doAutoSustain && daNote.noteData > 4)) {
-						daNote.playField.noteHitCallback(daNote, daNote.playField);
-					}
-				}
-				}
-				else
-				{
 				// hold note functions
 				if(!daNote.playField.autoPlayed && daNote.playField.inControl && daNote.playField.playerControls){
 					if (daNote.isSustainNote && controlHoldArray[daNote.noteData] && daNote.canBeHit && !daNote.tooLate && !daNote.wasGoodHit || (daNote.doAutoSustain && daNote.noteData > 4)) {
 						daNote.playField.noteHitCallback(daNote, daNote.playField);
 					}
-				}
 				}
 			});
 
@@ -5024,16 +5015,17 @@ class PlayState extends MusicBeatState
 		}
 
 		// TO DO: Find a better way to handle controller inputs, this should work for now
-		if(!ClientPrefs.controllerMode)
+		if(ClientPrefs.controllerMode)
 		{
-			#if android
-			for (i in 0..._hitbox.array.length) {
-				if (_hitbox.array[i].justReleased)
+			var controlArray:Array<Bool> = [controls.NOTE_LEFT_R, controls.NOTE_DOWN_R, controls.NOTE_UP_R, controls.NOTE_RIGHT_R];
+			if(controlArray.contains(true))
+			{
+				for (i in 0...controlArray.length)
 				{
-				       onKeyRelease(new KeyboardEvent(KeyboardEvent.KEY_UP, true, true, -1, keysArray[i][0]));
+					if(controlArray[i])
+						onKeyRelease(new KeyboardEvent(KeyboardEvent.KEY_UP, true, true, -1, keysArray[i][0]));
 				}
 			}
-			#end
 		}
 	}
 
@@ -5519,6 +5511,9 @@ class PlayState extends MusicBeatState
 		#if HIT_SINGLE
 		Yoshi.resume();
 		#end
+		
+		qqqeb = false;
+		
 		super.destroy();
 	}
 
@@ -5643,11 +5638,12 @@ class PlayState extends MusicBeatState
 			setOnScripts('altAnim', SONG.notes[curSection].altAnim);
 			setOnScripts('gfSection', SONG.notes[curSection].gfSection);
 
-			if (camZooming && ClientPrefs.camZooms)
-			{
+			if (beatsPerZoom == 0) beatsPerZoom = 4;
+		if (camZooming && ClientPrefs.camZooms)
+		{
 				FlxG.camera.zoom += 0.015 * camZoomingMult;
 				camHUD.zoom += 0.03 * camZoomingMult;
-			}
+		}
 		}
 
 		setOnScripts('curSection', curSection);
