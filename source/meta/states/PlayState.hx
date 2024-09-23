@@ -2107,7 +2107,7 @@ class PlayState extends MusicBeatState
 		if(ret != Globals.Function_Stop) {
 			if (skipCountdown || startOnTime > 0) skipArrowStartTween = true;
 
-			#if mobile
+	 		#if ios && android
 			mobileControls.visible = true;
 			#end
 			
@@ -4426,7 +4426,7 @@ class PlayState extends MusicBeatState
 		deathCounter = 0;
 		seenCutscene = false;
 		
-		#if mobile
+ 		#if ios && android
 		mobileControls.visible = false;
 		#end
 
