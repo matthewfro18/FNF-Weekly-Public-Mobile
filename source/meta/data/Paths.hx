@@ -321,7 +321,6 @@ class Paths
 			if (FileSystem.exists(levelPath))
 				return File.getContent(levelPath);
 		}
-		#end
 		return Assets.getText(getPath(key, TEXT));
 	}
 
