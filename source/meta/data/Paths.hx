@@ -391,7 +391,6 @@ class Paths
 		var bitmap:BitmapData = null;
 		var file:String = null;
 
-		#if MODS_ALLOWED
 		file = modsImages(key);
 		if (currentTrackedAssets.exists(file))
 		{
@@ -401,7 +400,6 @@ class Paths
 		else if (FileSystem.exists(file))
 			bitmap = BitmapData.fromFile(file);
 		else
-		#end
 		{
 			file = getPath('images/$key.png', IMAGE, library);
 			if (currentTrackedAssets.exists(file))
