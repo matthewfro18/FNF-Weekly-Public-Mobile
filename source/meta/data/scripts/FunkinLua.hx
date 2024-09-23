@@ -1,12 +1,14 @@
 package meta.data.scripts;
 
+#if LUA_ALLOWED
 import llua.Lua;
 import llua.LuaL;
 import llua.State;
 import llua.Convert;
+#end
 
-import PlayState;
-import animateatlas.AtlasFrameMaker;
+// import PlayState;
+// import animateatlas.AtlasFrameMaker;
 import meta.states.*;
 import gameObjects.animateatlas.AtlasFrameMaker;
 
