@@ -1437,10 +1437,10 @@ class PlayState extends MusicBeatState
 		topBar.cameras = [camOther];
 		bottomBar.cameras = [camOther];
 		
-		#if mobile
+		#if ios && android
                 addMobileControls(false);
                 mobileControls.visible = false;
-                #end
+		#end
 
 		setOnScripts('playFields', playFields);
 		setOnScripts('grpNoteSplashes', grpNoteSplashes);
